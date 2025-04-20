@@ -1,8 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { FlightContext } from './FlightContext';
 import FlightCard from './FlightCard';
 
-const SearchForm = () => {
+function SearchForm()  {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
   const [tripType, setTripType] = useState('oneway');
@@ -13,6 +13,16 @@ const SearchForm = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
   const { setResults } = useContext(FlightContext);
+
+  useEffect(() => {
+    const storedResults = localStorage.getItem('flightSearchResults');
+    if (storedResults) {
+      const parsedResults = JSON.parse(storedResults);
+      setSearchResults(parsedResults);
+      setResults(parsedResults);
+      setHasSearched(true);
+    }
+  }, [setResults]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -31,7 +41,7 @@ const SearchForm = () => {
           departureTime: `${departureDate}T09:00`,
           arrivalTime: `${departureDate}T11:00`,
           duration: '2h',
-          price: 120,
+          price: 4500,
           airline: 'IndiGo',
         },
         {
@@ -41,7 +51,7 @@ const SearchForm = () => {
           departureTime: `${departureDate}T14:00`,
           arrivalTime: `${departureDate}T16:30`,
           duration: '2h 30m',
-          price: 135,
+          price: 5200,
           airline: 'Air India',
         },
       ];
@@ -51,16 +61,17 @@ const SearchForm = () => {
           id: 'return1',
           origin: to,
           destination: from,
-          departureTime: `${returnDate}T12:00`,
-          arrivalTime: `${returnDate}T14:00`,
+          departureTime: `${returnDate} time:-12:00`,
+          arrivalTime: `${returnDate} time:-14:00`,
           duration: '2h',
-          price: 125,
+          price: 20500,
           airline: 'IndiGo',
         });
       }
 
       setSearchResults(mockData);
       setResults(mockData);
+      localStorage.setItem('flightSearchResults', JSON.stringify(mockData));
     } catch (err) {
       console.error('Mock fetch error:', err);
       setError('Something went wrong while fetching flights.');
@@ -71,7 +82,7 @@ const SearchForm = () => {
   };
 
   return (
-    <div className="min-h-screen py-20"> {/* Updated background to cream */}
+    <div className="min-h-screen py-20">
       <div className="container mx-auto pb-16">
         {/* FORM */}
         <div className="w-[40%] mx-auto bg-white rounded-2xl shadow-2xl p-10">
@@ -167,8 +178,8 @@ const SearchForm = () => {
             ) : (
               <div className="flex flex-wrap justify-center gap-8 mt-10">
                 {searchResults.map((flight) => (
-                  <div key={flight.id} className="w-full md:w-[22%]">
-                    <div className="rounded-xl shadow-lg p-4 bg-white hover:shadow-xl transition duration-300">
+                  <div key={flight.id} className="w-8/10 md:w-[22%] py-4">
+                    <div className="rounded-full shadow-lg p-4 bg-white hover:shadow-xl transition duration-300">
                       <FlightCard flight={flight} />
                     </div>
                   </div>
