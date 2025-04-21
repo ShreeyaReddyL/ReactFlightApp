@@ -7,7 +7,7 @@ function Interested() {
 
   const handleUnlike = (flightId) => {
     const updatedFlights = interestedFlights.filter(flight => flight.id !== flightId);
-    setInterestedFlights(updatedFlights); // This auto updates localStorage via useEffect in context
+    setInterestedFlights(updatedFlights); 
   };
 
   return (

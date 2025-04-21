@@ -170,7 +170,7 @@ function SearchForm()  {
           </form>
         </div>
 
-        {/* RESULTS */}
+        
         {hasSearched && (
           <div className="mt-16 px-4">
             {searchResults.length === 0 ? (
