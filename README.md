@@ -43,3 +43,17 @@ A single-page flight booking application built with React, Tailwind CSS, and Rea
 ```bash
 npm install
 npm run dev
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+![Home Page](https://github.com/user-attachments/assets/eb806063-1cae-4943-80a6-d809a14f9a6d)
+
+### ⭐ Interested Flights
+![Interested Flights](https://github.com/user-attachments/assets/31972ae4-7b1f-4584-ac2d-b651a503b6ea)
+
+### 📘 Booked Flights
+![Booked Flights](https://github.com/user-attachments/assets/11863570-c7e0-4dc3-bb07-e3714b1d5300)
+
+
+
