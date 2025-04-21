@@ -1,27 +1,41 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { FlightContext } from './FlightContext';
 import FlightCard from './FlightCard';
 import { Star } from 'lucide-react';
 
-const Booked = () => {
+function Booked () {
   const { bookedFlights, setBookedFlights } = useContext(FlightContext);
   const [showRating, setShowRating] = useState(false);
   const [selectedRating, setSelectedRating] = useState(null);
   const [thanksMessage, setThanksMessage] = useState(false);
 
+  useEffect(() => {
+    const storedFlights = localStorage.getItem('bookedFlights');
+    if (storedFlights) {
+      setBookedFlights(JSON.parse(storedFlights));
+    }
+  }, [setBookedFlights]);
+
+  useEffect(() => {
+    if (bookedFlights.length > 0) {
+      localStorage.setItem('bookedFlights', JSON.stringify(bookedFlights));
+    }
+  }, [bookedFlights]);
+
   const handleDone = () => {
-    setBookedFlights([]); // Clear booked flights
-    setShowRating(true);  // Show rating section
+    setBookedFlights([]); 
+    localStorage.removeItem('bookedFlights'); 
+    setShowRating(true); 
   };
 
   const handleRating = (rating) => {
     setSelectedRating(rating);
-    setThanksMessage(true); // Show thank you message
+    setThanksMessage(true); 
   };
 
   return (
     <div className="w-full flex justify-center bg-gradient-to-r from-green-50 to-green-100 py-6">
-      <div className="w-full max-w-4xl px-4">
+      <div className="w-4/5 max-w-4xl px-4">
         <h2 className="text-3xl md:text-4xl font-extrabold mb-8 text-center text-green-700">
           Booked Flights
         </h2>
