@@ -1,15 +1,30 @@
 # ✈️ React Flight Booking App
 
-A single-page travel booking application built with React, Tailwind CSS, and React Router.
+A single-page flight booking application built with React, Tailwind CSS, and React Router.It is a front-end web application built with React and Vite that allows users to search for flights, view available options, and manage their interests or bookings. It uses reusable components and React Context for state management to provide a smooth and dynamic user experience. The project is structured for scalability and fast development using modern web tools.
 
 ## Features
 
-- 🌍 Browse travel destinations
-- 💡 Save destinations you're interested in
-- 📘 View your booked flights
-- ⚙️ Modern UI with Tailwind CSS
-- 🔀 Routing with React Router
+- 🌍 **Browse Flights**  
+  Explore a list of flights for different travel destinations.
 
+- 💡 **Save Interested Flights**  
+  Mark flights you're interested in and view them later in a dedicated section.
+
+- 📘 **Booked Flights View**  
+  Simulate booking flights and track them in a separate "Booked" section.
+
+- ⚙️ **Modern UI with Tailwind CSS**  
+  Clean and responsive interface built with Tailwind for a seamless experience.
+
+- 🔀 **Routing with React Router**  
+  Smooth navigation between pages using React Router for a single-page app feel.
+
+- 🧩 **Modular Components**  
+  Organized structure with reusable components like `FlightCard`, `SearchForm`, `Header`, and more.
+
+- 🌐 **Global State with React Context**  
+  Share flight-related data across the app without prop drilling.
+  `
 ## Tech Stack
 
 - **React 19**
